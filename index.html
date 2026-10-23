@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خالد واصل الرمضان - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f3d5c;
+      --accent: #2f9e9e;
+      --bg: #f4f7fa;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --radius: 16px;
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+      --bg: #0b1620;
+      --card: #132330;
+      --text: #e6edf3;
+      --muted: #9db0bf;
+      --line: #22384a;
+    }
+
+    .cv-container {
+      width: 100%;
+      max-width: 720px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 32px rgba(15, 61, 92, 0.08);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease;
+      position: relative;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .controls {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+    }
+
+    .ctrl-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(6px);
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: scale(1.08);
+    }
+
+    .cv-header {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      padding: 36px 24px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* زخارف الخلفية */
+    .cv-header::before,
+    .cv-header::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+    .cv-header::before {
+      width: 200px; height: 200px;
+      top: -80px; right: -60px;
+    }
+    .cv-header::after {
+      width: 150px; height: 150px;
+      bottom: -70px; left: -50px;
+    }
+
+    .avatar {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      border: 3px solid rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 900;
+      backdrop-filter: blur(4px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .name {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .job-title {
+      font-size: 0.95rem;
+      opacity: 0.92;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== شارة متاح للعمل ===== */
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1.5px solid var(--green);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+      animation: badgeGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes badgeGlow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--green-glow); }
+      50%      { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+    }
+
+    .available-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 var(--green-glow);
+      animation: pulseDot 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseDot {
+      0%   { box-shadow: 0 0 0 0 var(--green-glow); }
+      70%  { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255,255,255,0.13);
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: background 0.25s ease, transform 0.2s ease;
+      direction: ltr;
+    }
+
+    .contact-item:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    .contact-item.whatsapp {
+      background: rgba(37, 211, 102, 0.25);
+      border: 1px solid rgba(37, 211, 102, 0.5);
+    }
+
+    .contact-item.whatsapp:hover {
+      background: rgba(37, 211, 102, 0.45);
+    }
+
+    .icon { font-size: 0.9rem; }
+
+    .cv-section {
+      padding: 26px 24px;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.25s ease;
+    }
+
+    .cv-section:hover {
+      background: rgba(47, 158, 158, 0.03);
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(47, 158, 158, 0.15);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    body.dark .section-title { color: var(--accent); }
+
+    .section-title span { font-size: 1.15rem; }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 0.93rem;
+      text-align: justify;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-right: 22px;
+      border-right: 2px dashed var(--line);
+      margin-right: 6px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      right: -7px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(47, 158, 158, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.3);
+    }
+
+    .timeline-content h3 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .timeline-content .date {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(47, 158, 158, 0.1);
+      padding: 2px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-content p,
+    .timeline-content li {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .timeline-content ul {
+      padding-right: 18px;
+      margin-top: 6px;
+    }
+
+    .timeline-content li {
+      margin-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .timeline-content li:hover {
+      color: var(--accent);
+    }
+
+    .skills { display: flex; flex-direction: column; gap: 14px; }
+
+    .skill-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .skill-head span:last-child { color: var(--accent); }
+
+    .bar {
+      height: 8px;
+      background: var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      transition: width 1.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .langs { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .lang-pill {
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      background: rgba(47, 158, 158, 0.1);
+      color: var(--primary);
+      border-radius: 999px;
+      border: 1px solid rgba(47, 158, 158, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .lang-pill:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    body.dark .lang-pill { color: var(--accent); }
+    body.dark .lang-pill:hover { color: #fff; }
+
+    .cv-footer {
+      padding: 22px 24px 28px;
+      text-align: center;
+    }
+
+    .btn {
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none;
+      padding: 12px 26px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+      box-shadow: 0 6px 18px rgba(15, 61, 92, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(15, 61, 92, 0.3);
+    }
+
+    .btn:active { transform: translateY(0); }
+
+    @media (max-width: 480px) {
+      body { padding: 8px; }
+      .cv-container { border-radius: 12px; }
+      .cv-header { padding: 28px 16px 22px; }
+      .name { font-size: 1.35rem; }
+      .job-title { font-size: 0.85rem; }
+      .cv-section { padding: 22px 16px; }
+      .section-title { font-size: 1rem; }
+      .contact-item { font-size: 0.75rem; padding: 5px 10px; }
+      .ctrl-btn { width: 34px; height: 34px; font-size: 0.9rem; }
+      .available-badge { font-size: 0.75rem; padding: 5px 12px; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .cv-container { box-shadow: none; border-radius: 0; max-width: 100%; }
+      .btn, .controls { display: none !important; }
+      .cv-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .cv-section { page-break-inside: avoid; }
+      .available-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="cv-container">
+
+    <div class="controls">
+      <button class="ctrl-btn" id="themeBtn" title="تبديل الوضع الليلي">🌙</button>
+    </div>
+
+    <!-- الرأس -->
+    <header class="cv-header">
+      <div class="avatar">خ</div>
+      <h1 class="name">خالد واصل الرمضان</h1>
+      <p class="job-title">مهندس معلوماتية · Front-End Developer · Networks</p>
+
+      <!-- شارة متاح للعمل -->
+      <div class="available-badge">
+        <span class="available-dot"></span>
+        متاح للعمل
+      </div>
+
+      <div class="contact">
+        <a href="mailto:Khldlwsl@gmail.com" class="contact-item">
+          <span class="icon">✉</span> Khldlwsl@gmail.com
+        </a>
+        <a href="https://wa.me/963930014858" target="_blank" rel="noopener" class="contact-item whatsapp">
+          <span class="icon">💬</span> 0930014858
+        </a>
+        <span class="contact-item" style="direction: rtl;">
+          <span class="icon">📍</span> سوريا / عفرين
+        </span>
+      </div>
+    </header>
+
+    <!-- نبذة -->
+    <section class="cv-section">
+      <h2 class="section-title"><span>👤</span> نبذة عني</h2>
+      <p class="about-text">
+        طالب هندسة معلوماتية في السنة الرابعة بجامعة النهضة، شغوف بتطوير واجهات الويب
+        وتجربة المستخدم، ولدي خبرة عملية في مجال شبكات الاتصالات. أمتلك مهارات في تطوير
+        واجهات متجاوبة باستخدام HTML، CSS، وJavaScript، بالإضافة إلى فهم أساسيات
+        الشبكات وإدارة الاتصالات، وأسعى لتقديم حلول تقنية أنيقة وفعّالة.
+      </p>
+    </section>
+
+    <!-- التعليم -->
+    <section class="cv-section">
+      <h2 class="section-title"><span>🎓</span> التعليم</h2>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>جامعة النهضة — بكالوريوس هندسة معلوماتية</h3>
+          <span class="date">(السنة الرابعة)</span>
+          <p>التركيز على تطوير الويب وتقنيات Front-End وهندسة البرمجيات والشبكات.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- الخبرات -->
+    <section class="cv-section">
+      <h2 class="section-title"><span>💼</span> الخبرات العملية</h2>
+
+      <div class="timeline-item" style="margin-bottom: 20px;">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>شركة الاتصالات — فني شبكات</h3>
+          <ul>
+            <li>تركيب وصيانة شبكات الاتصالات والإنترنت.</li>
+            <li>تمديد الكابلات وتركيب الأجهزة والمقاسم.</li>
+            <li>تشخيص الأعطال وحل مشاكل الاتصال بكفاءة.</li>
+            <li>التعامل مع عملاء الشركة وتقديم الدعم الفني.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Freelance — Front-End Developer</h3>
+          <ul>
+            <li>تطوير واجهات مستخدم متجاوبة مع جميع الأجهزة.</li>
+            <li>تحسين تجربة المستخدم وأداء الصفحات.</li>
+            <li>تحويل التصاميم إلى صفحات ويب فعّالة.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- المهارات -->
+    <section class="cv-section">
+      <h2 class="section-title"><span>🛠</span> المهارات</h2>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-head"><span>HTML5 / CSS3</span><span>90%</span></div>
+          <div class="bar"><div class="fill" data-width="90%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>JavaScript</span><span>85%</span></div>
+          <div class="bar"><div class="fill" data-width="85%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>React.js</span><span>75%</span></div>
+          <div class="bar"><div class="fill" data-width="75%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>Responsive Design</span><span>88%</span></div>
+          <div class="bar"><div class="fill" data-width="88%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>شبكات الاتصالات</span><span>85%</span></div>
+          <div class="bar"><div class="fill" data-width="85%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>تركيب وصيانة الشبكات</span><span>80%</span></div>
+          <div class="bar"><div class="fill" data-width="80%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-head"><span>Git & GitHub</span><span>80%</span></div>
+          <div class="bar"><div class="fill" data-width="80%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- اللغات -->
+    <section class="cv-section">
+      <h2 class="section-title"><span>🌐</span> اللغات</h2>
+      <div class="langs">
+        <span class="lang-pill">العربية — الأم</span>
+        <span class="lang-pill">الإنجليزية — جيد</span>
+      </div>
+    </section>
+
+    <footer class="cv-footer">
+      <button id="printBtn" class="btn">🖨 طباعة / حفظ PDF</button>
+    </footer>
+
+  </main>
+
+  <script>
+    window.addEventListener('load', () => {
+      const fills = document.querySelectorAll('.fill');
+      setTimeout(() => {
+        fills.forEach(fill => {
+          fill.style.width = fill.dataset.width;
+        });
+      }, 250);
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    const themeBtn = document.getElementById('themeBtn');
+    const body = document.body;
+
+    if (localStorage.getItem('cv-theme') === 'dark') {
+      body.classList.add('dark');
+      themeBtn.textContent = '☀️';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('cv-theme', isDark ? 'dark' : 'light');
+    });
+
+    const sections = document.querySelectorAll('.cv-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(15px)';
+      section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
